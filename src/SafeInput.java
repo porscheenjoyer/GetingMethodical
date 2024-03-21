@@ -258,20 +258,13 @@ public class SafeInput {
 
             }
 
-            else if (response.equalsIgnoreCase("n")) {
+            else if (response.equalsIgnoreCase("n")){
 
                 break;
 
             }
 
-            else {
-
-                trash = pipe.nextLine();
-                System.out.println("Must say y or n, you said: " + trash);
-
-            }
-
-        } while (!done);
+        } while (true);
 
         return response;
 
@@ -280,8 +273,32 @@ public class SafeInput {
 
     public static String getRegExString(Scanner pipe, String prompt, String regEx){
 
+        String userInput = "";
 
-        return regEx;
+
+
+        do {
+
+            System.out.println(prompt);
+
+            userInput = pipe.nextLine();
+
+            if (userInput.matches(regEx)) {
+
+                break;
+
+            }
+
+            else {
+
+                System.out.println("Does not match the pattern, try again");
+
+            }
+
+        } while (true);
+
+
+        return userInput + regEx;
 
     }
 
